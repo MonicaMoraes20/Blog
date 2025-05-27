@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Curso de Instructor en Musculación</title>
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000;
+      color: #eee;
+      line-height: 1.5;
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    /* Portada */
+    header {
+      background: linear-gradient(135deg, #b31217, #000);
+      border-radius: 15px;
+      padding: 40px 20px 60px 20px; /* más padding abajo para logos */
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    header h2 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      font-style: italic;
+      letter-spacing: 1.5px;
+    }
+
+    /* Logos animados */
+    .logos-container {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 15px;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      /* Eliminado el filtro para evitar posibles efectos no deseados con fondos transparentes */
+      animation: floatZoom 4s ease-in-out infinite;
+      object-fit: contain; /* Asegura que el logo se ajuste sin distorsión */
+    }
+
+    /* Animación: flotación y zoom suave */
+    @keyframes floatZoom {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+        filter: brightness(1.1) contrast(1.2); /* Mantenido el filtro para el efecto visual */
+      }
+      50% {
+        transform: translateY(-12px) scale(1.08);
+        filter: brightness(1.3) contrast(1.4); /* Mantenido el filtro para el efecto visual */
+      }
+    }
+
+    /* Icono pesas grande y fondo con silueta */
+    header::before {
+      content: "🏋️‍♂️";
+      font-size: 150px;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      opacity: 0.15;
+      user-select: none;
+    }
+
+    /* Secciones */
+    section {
+      background: #111;
+      margin-top: 30px;
+      border-radius: 15px;
+      padding: 25px 30px;
+      box-shadow: 0 0 15px rgba(179, 18, 23, 0.7);
+    }
+
+    section h2 {
+      color: #b31217;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      border-bottom: 3px solid #b31217;
+      padding-bottom: 8px;
+    }
+
+    /* Texto general */
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+      color: #ddd;
+    }
+
+    /* Listas con iconos en contenido del curso */
+    .contenido-scroll {
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 12px;
+      border: 2px solid #b31217;
+      border-radius: 10px;
+      background: #111;
+    }
+
+    .contenido-scroll::-webkit-scrollbar {
+      width: 9px;
+    }
+
+    .contenido-scroll::-webkit-scrollbar-track {
+      background: #222;
+      border-radius: 10px;
+    }
+
+    .contenido-scroll::-webkit-scrollbar-thumb {
+      background: #b31217;
+      border-radius: 10px;
+    }
+
+    .contenido-scroll ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .contenido-scroll ul li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      color: white;
+    }
+
+    /* Íconos específicos para cada módulo del curso */
+    .contenido-scroll ul li.intro::before { content: "💡"; }
+    .contenido-scroll ul li.beneficios::before { content: "💪"; }
+    .contenido-scroll ul li.anatomia::before { content: "🦴"; }
+    .contenido-scroll ul li.entrenamiento::before { content: "🏃"; }
+    .contenido-scroll ul li.teoria::before { content: "📚"; }
+    .contenido-scroll ul li.ejercicios::before { content: "🏋️"; }
+    .contenido-scroll ul li.contracciones::before { content: "⚙️"; }
+    .contenido-scroll ul li.videos-practicos::before { content: "🎥"; }
+    .contenido-scroll ul li.metodos::before { content: "📊"; }
+    .contenido-scroll ul li.rutinas::before { content: "📝"; }
+    .contenido-scroll ul li.individualidad::before { content: "🧬"; }
+    .contenido-scroll ul li.nutricion::before { content: "🍎"; }
+    .contenido-scroll ul li.cuidados::before { content: "🩹"; }
+    .contenido-scroll ul li.planillas::before { content: "📋"; }
+    .contenido-scroll ul li.rol::before { content: "👨‍🏫"; }
+    .contenido-scroll ul li.formacion::before { content: "🎓"; }
+    .contenido-scroll ul li.clases-presenciales::before { content: "📍"; }
+    .contenido-scroll ul li.examen::before { content: "✅"; }
+    .contenido-scroll ul li.certificado::before { content: "🏅"; }
+
+
+    /* Iconos pequeños para otras secciones */
+    .icono {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 1.4rem;
+      color: white;
+      vertical-align: middle;
+    }
+
+    /* Métodos de pago: iconos específicos */
+    .metodos-pago li {
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+      color: #ddd;
+      display: flex;
+      align-items: center;
+    }
+    .metodos-pago li::before {
+      content: "💳";
+      margin-right: 10px;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    /* Para transferencia y giros, cambiar icono */
+    .metodos-pago li.transferencia::before {
+      content: "🏦";
+    }
+    .metodos-pago li.giro::before {
+      content: "📤";
+    }
+
+    /* Enlaces destacados */
+    a.enlace-pago, a.enlace-inscripcion {
+      color: #b31217;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom 0.3s ease;
+    }
+    a.enlace-pago:hover, a.enlace-inscripcion:hover {
+      border-bottom: 1px solid #b31217;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) { /* Ajustado a 768px para una mejor adaptabilidad en tablets */
+      .container {
+        margin: 20px auto;
+        padding: 15px;
+      }
+      header {
+        padding: 30px 15px 50px 15px;
+      }
+      header h1 {
+        font-size: 2.2rem;
+      }
+      header h2 {
+        font-size: 1.2rem;
+      }
+      .logos-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .logo {
+        width: 100px;
+        height: 100px;
+      }
+      section {
+        margin-top: 20px;
+        padding: 20px;
+      }
+      section h2 {
+        font-size: 1.8rem;
+      }
+      p, .contenido-scroll ul li, .metodos-pago li {
+        font-size: 1rem;
+      }
+      .contenido-scroll {
+        max-height: 280px;
+      }
+      header::before {
+        font-size: 120px;
+        top: 0;
+        right: 10px;
+      }
+    }
+
+    @media (max-width: 480px) { /* Para móviles más pequeños */
+      header h1 {
+        font-size: 1.8rem;
+      }
+      header h2 {
+        font-size: 1rem;
+      }
+      .logo {
+        width: 80px;
+        height: 80px;
+      }
+      section h2 {
+        font-size: 1.5rem;
+      }
+      .contenido-scroll {
+        max-height: 200px;
+      }
+      header::before {
+        font-size: 90px;
+        top: 5px;
+        right: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Curso de Instructor en Musculación</h1>
+      <h2>Conviértete en el experto que siempre soñaste</h2>
+
+      <div class="logos-container">
+        <img src="logo1.png" alt="Logo 1" class="logo" />
+        <img src="logo2.png" alt="Logo 2" class="logo" />
+      </div>
+    </header>
+
+    <section>
+      <h2>¿Te apasiona el mundo del fitness y la musculación?</h2>
+      <p>¿Te gustaría convertir esa pasión en una carrera profesional? ¡Este curso de instructor en musculación es perfecto para ti! Respaldado por el prestigioso Instituto Internacional del Deporte y las Ciencias Aplicadas (IIDCA), este curso semi presencial te proporcionará todos los conocimientos y herramientas necesarias para destacar en el campo del entrenamiento físico.</p>
+    </section>
+
+    <section>
+      <h2>Un Curso Diseñado para tu Comodidad</h2>
+      <p>El curso tiene una duración de tres meses y está diseñado para ser flexible y accesible. El 90% del contenido se ofrece a través de nuestra plataforma en línea Treiner Fit, donde podrás acceder a clases grabadas, libros y materiales de estudio las 24 horas del día, los 7 días de la semana. Así, podrás aprender a tu propio ritmo y desde la comodidad de tu hogar.</p>
+      <p><span class="icono">📅</span> Tres meses de duración</p>
+      <p><span class="icono">💻</span> 90% online, 10% presencial</p>
+    </section>
+
+    <section>
+      <h2>Clases Prácticas Extra</h2>
+      <p>Para aquellos que prefieren el aprendizaje cara a cara, ofrecemos tres clases prácticas extra que no son obligatorias, pero sí altamente recomendadas. Estas clases te permitirán interactuar directamente con instructores experimentados y aplicar los conocimientos adquiridos en un entorno real.</p>
+    </section>
+
+    <section>
+      <h2>Contenido del Curso</h2>
+      <div class="contenido-scroll">
+        <ul>
+          <li class="intro">Introducción al Fitness</li>
+          <li class="beneficios">11 Beneficios de Hacer Pesas | Dr. Carlos Jaramillo</li>
+          <li class="anatomia">Anatomía y Fisiología Humana - Lic. en Enfermería Sergio da Rosa</li>
+          <li class="entrenamiento">Introducción al Entrenamiento</li>
+          <li class="teoria">Teoría del Entrenamiento</li>
+          <li class="ejercicios">Ejercicios Básicos de Musculación</li>
+          <li class="contracciones">Tipos de Contracciones Musculares</li>
+          <li class="videos-practicos">Secuencia 1: Videos Prácticos</li>
+          <li class="metodos">Métodos de Entrenamiento</li>
+          <li class="rutinas">Elaboración de Rutinas para Diferentes Poblaciones y Objetivos</li>
+          <li class="individualidad">Individualidad Metabólica y Tipo de Cuerpo/Biotipo</li>
+          <li class="videos-practicos">Secuencia 2: Videos Prácticos</li>
+          <li class="nutricion">Módulo de Nutrición Deportiva con Lic. Sabrina Sander</li>
+          <li class="cuidados">Cuidados Básicos para el Instructor</li>
+          <li class="planillas">Cómo Elaborar Planillas de Entrenamiento y Ejecución</li>
+          <li class="rol">Rol del Instructor en el Área de la Musculación</li>
+          <li class="formacion">Formación y Capacitación Continua</li>
+          <li class="clases-presenciales">Clases Prácticas Presenciales</li>
+          <li class="examen">Examen Final</li>
+          <li class="certificado">Entrega de Certificado</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Proceso de Inscripción</h2>
+      <p>Para inscribirte en el curso, sigue estos sencillos pasos:</p>
+      <p><strong>PRIMER PASO: GARANTIZAR TU LUGAR</strong></p>
+      <p>Para asegurar tu cupo, deberás abonar el costo del curso. Una vez que hayas realizado el pago, deberás enviar el comprobante de pago.</p>
+      <p><strong>SEGUNDO PASO: COMPLETAR EL FORMULARIO DE INSCRIPCIÓN</strong></p>
+      <p>Una vez hayas realizado el pago, deberás completar el formulario de inscripción.</p>
+      <p>Acá te dejo el enlace al formulario: <a href="https://forms.gle/TENHBCQHiP9D3X5G6" class="enlace-inscripcion" target="_blank" rel="noopener noreferrer">Formulario de Inscripción</a></p>
+      <p><strong>¡Listo! Ya estarás inscrito</strong></p>
+    </section>
+
+    <section>
+      <h2>Métodos de Pago</h2>
+      <ul class="metodos-pago">
+        <li class="transferencia"><strong>Transferencia Bancaria</strong></li>
+        <li><strong>Tarjetas de Crédito/Débito</strong> (Visa, Mastercard, American Express, etc.)</li>
+        <li class="giro"><strong>Giros</strong></li>
+        <li><strong>Mercado Pago</strong> <span>📱</span></li>
+        <li><strong>Pago en efectivo</strong> en nuestras oficinas</li>
+      </ul>
+      <p>Para más detalles y asistencia, visita nuestra página oficial: <a href="https://www.treinerfit.com" class="enlace-pago" target="_blank" rel="noopener noreferrer">www.treinerfit.com</a></p>
+    </section>
+
+    <section>
+      <h2>¡Cupos Limitados!</h2>
+      <p><strong>¡Inscríbete ahora y asegura tu lugar en esta nueva edición!</strong></p>
+      <p>Cada vez son más las oportunidades en el área de la musculación. Prepárate para aprovecharlas.</p>
+    </section>
+  </div>
+</body>
+</html>
